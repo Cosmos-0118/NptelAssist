@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "NPTEL Assist",
+  "version": "2.3",
+  "description": "Auto-mark NPTEL assignment answers and copy questions with one click.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads"
+  ],
+  "host_permissions": [
+    "*://*.nptel.ac.in/*",
+    "*://*.swayam.gov.in/*",
+    "https://storage.googleapis.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.nptel.ac.in/*",
+        "*://*.swayam.gov.in/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}
