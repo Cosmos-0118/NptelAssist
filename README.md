@@ -47,6 +47,7 @@ manifest.json
 icons/       extension + toolbar icons
 content/     page logic (discover, match, mark, extract, autocomplete)
 popup/       UI + Chrome bridge + image downloads
+pages/       Privacy Policy & Terms of Service
 ```
 
 No build step — load as-is.

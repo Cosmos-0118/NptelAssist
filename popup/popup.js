@@ -199,4 +199,18 @@
             btn.classList.remove('loading');
         }
     });
+
+    // ─── Legal pages ───
+    function openExtensionPage(path) {
+        const url = chrome.runtime.getURL(path);
+        chrome.tabs.create({ url });
+    }
+
+    document.getElementById('privacy-btn').addEventListener('click', () => {
+        openExtensionPage('pages/privacy.html');
+    });
+
+    document.getElementById('terms-btn').addEventListener('click', () => {
+        openExtensionPage('pages/terms.html');
+    });
 })();

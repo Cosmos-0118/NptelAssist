@@ -1,0 +1,165 @@
+/* Full-page legal docs — matches popup theme */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    background: #0f1117;
+    color: #e2e4e9;
+    -webkit-font-smoothing: antialiased;
+}
+
+.page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    display: block;
+}
+
+.logo h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    background: linear-gradient(135deg, #7c8aff, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.badge {
+    font-size: 11px;
+    font-weight: 500;
+    color: #555b6e;
+    background: #1a1d27;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.panel {
+    background: #1a1d27;
+    border: 1px solid #2a2d3a;
+    border-radius: 12px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.panel h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #e2e4e9;
+}
+
+.meta {
+    font-size: 12.5px;
+    color: #6b7280;
+}
+
+.panel h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #c4c9d4;
+    margin-top: 6px;
+}
+
+.panel p,
+.panel li {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #9ca3af;
+}
+
+.panel ul {
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.panel a {
+    color: #7c8aff;
+    text-decoration: none;
+}
+
+.panel a:hover {
+    text-decoration: underline;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn.secondary {
+    background: #252836;
+    color: #d1d5db;
+    border: 1px solid #2a2d3a;
+}
+
+.btn.secondary:hover {
+    background: #2d3044;
+    border-color: #3d4152;
+}
+
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: #555b6e;
+    line-height: 1.5;
+}
+
+.footer a {
+    color: #6b7280;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #9ca3af;
+}
