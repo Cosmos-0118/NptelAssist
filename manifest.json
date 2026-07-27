@@ -14,7 +14,7 @@
     "https://storage.googleapis.com/*"
   ],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup/popup.html"
   },
   "content_scripts": [
     {
@@ -22,7 +22,18 @@
         "*://*.nptel.ac.in/*",
         "*://*.swayam.gov.in/*"
       ],
-      "js": ["content.js"],
+      "js": [
+        "content/ns.js",
+        "content/text.js",
+        "content/parse-answers.js",
+        "content/images.js",
+        "content/discover.js",
+        "content/match.js",
+        "content/mark-answers.js",
+        "content/extract-questions.js",
+        "content/autocomplete.js",
+        "content/bootstrap.js"
+      ],
       "run_at": "document_idle",
       "all_frames": true
     }
