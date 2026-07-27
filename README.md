@@ -1,5 +1,9 @@
 # NPTEL Assist
 
+<p align="center">
+  <img src="icons/icon.png" alt="NPTEL Assist" width="96" height="96">
+</p>
+
 Chrome extension for [NPTEL](https://nptel.ac.in) / [Swayam](https://swayam.gov.in) — mark assignment answers, copy questions for AI, and auto-complete sidebar lessons.
 
 ## Install
@@ -40,6 +44,7 @@ Answer: option two
 
 ```
 manifest.json
+icons/       extension + toolbar icons
 content/     page logic (discover, match, mark, extract, autocomplete)
 popup/       UI + Chrome bridge + image downloads
 ```
