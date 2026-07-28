@@ -4,31 +4,38 @@
   <img src="icons/icon.png" alt="NPTEL Assist" width="96" height="96">
 </p>
 
-Chrome extension for [NPTEL](https://nptel.ac.in) / [Swayam](https://swayam.gov.in) — mark assignment answers, copy questions for AI, and auto-complete sidebar lessons.
+<p align="center">
+  A Chrome extension for <a href="https://nptel.ac.in">NPTEL</a> / <a href="https://swayam.gov.in">Swayam</a> that marks answers, extracts questions for AI, and auto-completes course items.
+</p>
+
+<p align="center">
+  <a href="#install">Install</a> ·
+  <a href="#how-to-use">How to Use</a> ·
+  <a href="#privacy--legal">Privacy & Legal</a>
+</p>
+
+<p align="center">
+  <img src="assets/popup-preview.png" alt="NPTEL Assist popup preview" width="560">
+</p>
 
 ## Install
 
 1. Open `chrome://extensions`
-2. Enable **Developer mode**
-3. **Load unpacked** → select this folder
-4. Open an NPTEL/Swayam page, then click the extension icon
+2. Turn on **Developer mode**
+3. Click **Load unpacked**
+4. Select this project folder
+5. Open an NPTEL/Swayam page and click the extension icon
 
-Reload the extension after pulling code changes.
+## How to Use
 
-## Features
+- **Mark Answers:** paste numbered answers and click **Mark Answers**
+- **Copy Questions:** extract questions/options; images save to `Downloads/`
+- **Auto-Complete:** opens incomplete items in the course outline sidebar
 
-| Tab | What it does |
-|-----|----------------|
-| **Mark Answers** | Paste numbered answers → matches and selects options on the page |
-| **Copy Questions** | Extracts questions/options (with AI format instructions); saves images to `Downloads/` |
-| **Auto-Complete** | Clicks through incomplete items in the course outline sidebar |
+Answer input format:
 
-Stay on the NPTEL tab while Auto-Complete runs (leave the popup open).
-
-## Answer format
-
-```
-1. Question text (optional)
+```text
+1. (optional question text)
 Answer: exact option text
 
 2.
@@ -36,24 +43,13 @@ Answer: option one
 Answer: option two
 ```
 
-- One `Answer:` line per correct option (multi-select)
-- Optional notes after an em dash: `Answer: 0.803 — reason`
-- Option text should match the page as closely as possible
+## Privacy & Legal
 
-## Project layout
-
-```
-manifest.json
-icons/       extension + toolbar icons
-content/     page logic (discover, match, mark, extract, autocomplete)
-popup/       UI + Chrome bridge + image downloads
-pages/       Privacy Policy & Terms of Service
-```
-
-No build step — load as-is.
+- Privacy Policy: `pages/privacy.html`
+- Terms of Service: `pages/terms.html`
 
 ## Permissions
 
-- `activeTab` / `scripting` — talk to the open NPTEL/Swayam tab
-- `downloads` — save extracted question images
+- `activeTab`, `scripting` — interact with the current NPTEL/Swayam tab
+- `downloads` — save extracted images
 - Host access — `*.nptel.ac.in`, `*.swayam.gov.in`, `storage.googleapis.com`
