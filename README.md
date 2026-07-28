@@ -27,9 +27,8 @@
 5. Open an NPTEL/Swayam page and click the extension icon
 
 ## How to Use
-
-- **Mark Answers:** paste numbered answers and click **Mark Answers**
 - **Copy Questions:** extract questions/options; images save to `Downloads/`
+- **Mark Answers:** paste numbered answers and click **Mark Answers**
 - **Auto-Complete:** opens incomplete items in the course outline sidebar
 
 Answer input format:
