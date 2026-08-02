@@ -19,7 +19,7 @@
         if (groups.length === 0) {
             return {
                 success: false,
-                error: 'No questions/options found on this page. Make sure you are on an assignment page.',
+                error: 'No questions/options found on this page.',
             };
         }
 

@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  A Chrome extension for <a href="https://nptel.ac.in">NPTEL</a> / <a href="https://swayam.gov.in">Swayam</a> that marks answers, extracts questions for AI, and auto-completes course items.
+  A Chrome extension for <a href="https://nptel.ac.in">NPTEL</a> / <a href="https://swayam.gov.in">Swayam</a> that matches user-provided answers to available options, extracts questions for review, and navigates incomplete course items.
 </p>
 
 <p align="center">
@@ -28,8 +28,8 @@
 
 ## How to Use
 - **Copy Questions:** extract questions/options; images save to `Downloads/`
-- **Mark Answers:** paste numbered answers and click **Mark Answers**
-- **Auto-Complete:** opens incomplete items in the course outline sidebar
+- **Match Answers:** paste numbered answers; matches them to available options on the page
+- **Review Incomplete:** navigates incomplete course outline items for faster review
 
 Answer input format:
 

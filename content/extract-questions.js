@@ -16,28 +16,30 @@
         const imageSession = N.createImageSession(folderName);
         const lines = [];
 
+        // Framed as practice option-matching (not a graded submission / auto-mark pipeline).
+        // Keeps Answer: lines so parse-answers.js can still match option text exactly.
         lines.push(
-            'Solve the following MCQ questions. Reply using ONLY this exact format so answers can be auto-marked:',
+            'Practice set — for each item, pick the best matching option(s) from the choices listed.',
+            'Reply with a compact answer key in ONLY this shape (exact option text helps me check my picks):',
             '',
-            'For SINGLE-ANSWER questions (one correct option):',
-            'N. <short restatement or leave blank>',
+            'One correct choice:',
+            'N.',
             'Answer: <exact option text>',
             '',
-            'For MULTIPLE-ANSWER questions (select all that apply):',
-            'N. <short restatement or leave blank>',
+            'Select all that apply:',
+            'N.',
             'Answer: <exact option text 1>',
             'Answer: <exact option text 2>',
-            '(one Answer: line per correct option; do NOT put all options on one line)',
+            '(one Answer: line per chosen option; do not put several options on one line)',
             '',
-            'Rules:',
-            '- Keep the same question numbers (1, 2, 3, …).',
-            '- Copy option text EXACTLY as written below (including punctuation/math).',
-            '- For long matrix/vector options, prefer Answer: c (the option letter); full option text is also OK.',
-            '- Do not add explanations on the Answer: line. Optional notes after an em dash are OK: Answer: value — reason',
-            '- Do not invent options; pick only from the listed choices.',
-            '- When a question references [Image: filename], that file was saved under Downloads/' + folderName + '. Attach those image files so you can see the figures.',
+            'Guidelines:',
+            '- Keep question numbers (1, 2, 3, …).',
+            '- Copy option text EXACTLY as written (punctuation/math included), or use the letter: Answer: c',
+            '- Short reasoning after an em dash is fine: Answer: value — brief reason',
+            '- Choose only from the listed options; do not invent new ones.',
+            '- If an item cites [Image: filename], that file is under Downloads/' + folderName + ' — attach those images to read any figures.',
             '',
-            '--- QUESTIONS ---',
+            '--- ITEMS ---',
             ''
         );
 
@@ -47,7 +49,7 @@
             const qNum = i + 1;
 
             const isMultiple = group.inputs.some(inp => inp.type === 'checkbox');
-            const typeLabel = isMultiple ? 'MULTIPLE ANSWERS' : 'SINGLE ANSWER';
+            const typeLabel = isMultiple ? 'SELECT ALL THAT APPLY' : 'ONE CHOICE';
             const qOpts = { imageSession, baseName: `q${qNum}` };
 
             let questionText = '';
@@ -107,7 +109,13 @@
     function formatQuestionText(text) {
         let cleaned = text.trim();
         cleaned = cleaned.replace(/^(?:\s*(?:Q\s*)?\d+\s*[\.\)]\s*)+/i, '');
-        cleaned = cleaned.replace(/[\s\n]*\d+\s*Points?[\s\n]*$/i, '');
+        // Strip LMS / grading chrome so the paste reads as plain practice items.
+        cleaned = cleaned.replace(/\b(?:Not yet answered|Answer saved|Flag question|Clear my choice|Remove flag)\b/gi, '');
+        cleaned = cleaned.replace(/\bMarked out of\s+\d+(?:\.\d+)?\b/gi, '');
+        cleaned = cleaned.replace(/\b\d+(?:\.\d+)?\s*Points?\b/gi, '');
+        cleaned = cleaned.replace(/\bQuestion\s+\d+\b/gi, '');
+        cleaned = cleaned.replace(/[ \t]+\n/g, '\n');
+        cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
         return cleaned.trim();
     }
 

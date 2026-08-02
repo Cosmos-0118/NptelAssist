@@ -17,29 +17,29 @@
                 <img src="../icons/icon-48.png" width="28" height="28" alt="NPTEL Assist" class="logo-icon">
                 <h1>NPTEL Assist</h1>
             </div>
-            <span class="version">v2.3</span>
+            <span class="version">v2.5</span>
         </div>
 
         <!-- Tab Switcher -->
         <div class="tabs">
-            <button class="tab active" data-tab="mark">Mark Answers</button>
+            <button class="tab active" data-tab="mark">Match Answers</button>
             <button class="tab" data-tab="copy">Copy Questions</button>
-            <button class="tab" data-tab="complete">Auto-Complete</button>
+            <button class="tab" data-tab="complete">Review Incomplete</button>
         </div>
 
-        <!-- Mark Answers Tab -->
+        <!-- Match Answers Tab -->
         <div id="tab-mark" class="tab-content active">
-            <p class="hint">Paste your numbered questions with answers below. The extension will match and auto-select the correct options on the page.</p>
+            <p class="hint">Paste your numbered questions with answers below. The extension matches your answers to the available options on the page.</p>
             <textarea id="answers-input" placeholder="1. There are n bins of which the k-th bin...&#10;Answer: 1/2, 2/3&#10;&#10;2. A medical test: P(positive|disorder)=0.999...&#10;Answer: 0.803 — by Bayes' theorem...&#10;&#10;3. n coins tossed, each heads w.p. p...&#10;Answer: 0.055" spellcheck="false"></textarea>
             <button id="mark-btn" class="btn primary">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-                Mark Answers
+                Match Answers
             </button>
         </div>
 
         <!-- Copy Questions Tab -->
         <div id="tab-copy" class="tab-content">
-            <p class="hint">Extract questions and options from the active NPTEL page. Images are saved to a folder in Downloads so you can attach them when pasting into an AI. The copy includes AI answer-format instructions.</p>
+            <p class="hint">Extract questions and options from the active NPTEL page. Images save to Downloads so you can attach them when reviewing with an AI. The copy includes a compact answer-key template.</p>
             <div id="copy-preview" class="preview-area">
                 <span class="preview-placeholder">Click below to extract questions from the page.</span>
             </div>
@@ -55,17 +55,17 @@
             </div>
         </div>
 
-        <!-- Auto-Complete Tab -->
+        <!-- Review Incomplete Tab -->
         <div id="tab-complete" class="tab-content">
-            <p class="hint">Automatically click through all uncompleted items in the sidebar to mark them as done. Please stay on the tab while this runs.</p>
+            <p class="hint">Navigates incomplete course items in the sidebar for faster review. Stay on the tab while this runs.</p>
             <div class="btn-row">
                 <button id="autocomplete-btn" class="btn primary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                    Start Auto-Complete
+                    Start Review
                 </button>
             </div>
             <div id="autocomplete-progress" style="display: none; margin-top: 10px; font-size: 13px; color: #9ca3af; text-align: center;">
-                Progress: <span id="autocomplete-status" style="font-weight: bold; color: #fff;">0 completed</span>
+                Progress: <span id="autocomplete-status" style="font-weight: bold; color: #fff;">0 opened</span>
             </div>
         </div>
 

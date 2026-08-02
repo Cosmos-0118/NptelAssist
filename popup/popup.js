@@ -1,4 +1,4 @@
-// Popup UI orchestration — tabs, mark / extract / autocomplete actions.
+// Popup UI orchestration — tabs, match / extract / review-incomplete actions.
 (function () {
     'use strict';
 
@@ -20,7 +20,7 @@
         });
     });
 
-    // ─── Mark Answers ───
+    // ─── Match Answers ───
     document.getElementById('mark-btn').addEventListener('click', async () => {
         const text = document.getElementById('answers-input').value.trim();
         if (!text) {
@@ -30,7 +30,7 @@
 
         const btn = document.getElementById('mark-btn');
         btn.classList.add('loading');
-        showStatus('Marking answers…', 'info');
+        showStatus('Matching answers…', 'info');
 
         try {
             const tab = await getActiveNptelTab();
@@ -41,7 +41,7 @@
                 const total = response.total;
                 const marked = response.markedCount;
                 const skipped = response.skipped || [];
-                let msg = `Marked ${marked}/${total} answers.`;
+                let msg = `Matched ${marked}/${total} answers.`;
                 if (skipped.length > 0) {
                     msg += ` Could not match Q${skipped.join(', Q')}.`;
                 }
@@ -117,12 +117,12 @@
         }
     });
 
-    // ─── Auto-Complete ───
+    // ─── Review Incomplete ───
     document.getElementById('autocomplete-btn').addEventListener('click', async () => {
         const btn = document.getElementById('autocomplete-btn');
         btn.classList.add('loading');
         document.getElementById('autocomplete-progress').style.display = 'block';
-        showStatus('Starting auto-complete...', 'info');
+        showStatus('Starting review navigation…', 'info');
 
         try {
             const tab = await getActiveNptelTab();
@@ -139,11 +139,11 @@
                     showStatus(msg.message, 'info');
                 } else if (msg.action === 'ac_done') {
                     hasFinished = true;
-                    document.getElementById('autocomplete-status').textContent = `Finished! (${msg.count} completed)`;
+                    document.getElementById('autocomplete-status').textContent = `Finished! (${msg.count} opened)`;
                     if (msg.count > 0) {
-                        showStatus(`Successfully completed ${msg.count} items!`, 'success');
+                        showStatus(`Opened ${msg.count} incomplete item(s) for review.`, 'success');
                     } else {
-                        showStatus('No uncompleted items found.', 'success');
+                        showStatus('No incomplete items found.', 'success');
                     }
                     btn.classList.remove('loading');
                     chrome.runtime.onMessage.removeListener(listener);
