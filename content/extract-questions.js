@@ -32,6 +32,7 @@
             'Rules:',
             '- Keep the same question numbers (1, 2, 3, …).',
             '- Copy option text EXACTLY as written below (including punctuation/math).',
+            '- For long matrix/vector options, prefer Answer: c (the option letter); full option text is also OK.',
             '- Do not add explanations on the Answer: line. Optional notes after an em dash are OK: Answer: value — reason',
             '- Do not invent options; pick only from the listed choices.',
             '- When a question references [Image: filename], that file was saved under Downloads/' + folderName + '. Attach those image files so you can see the figures.',

@@ -33,6 +33,21 @@
         return [];
     };
 
+    /**
+     * Parse unambiguous option-letter answers: "c", "c)", "c.", "option c".
+     * Returns 0-based index or -1.
+     */
+    function parseOptionLetter(answer, optionCount) {
+        const t = answer.trim().toLowerCase();
+        let letter = null;
+        let m = t.match(/^(?:option\s+)?([a-z])[\.\)]?$/i);
+        if (m) letter = m[1];
+        if (!letter) return -1;
+        const idx = letter.charCodeAt(0) - 97;
+        if (idx < 0 || idx >= optionCount) return -1;
+        return idx;
+    }
+
     function matchSingle(answer, options) {
         const aNorm = N.normalize(answer);
         const aStrict = N.normalizeStrict(answer);
@@ -44,20 +59,34 @@
             }
         }
 
+        const letterIdx = parseOptionLetter(answer, options.length);
+        if (letterIdx >= 0) {
+            return [options[letterIdx].input];
+        }
+
+        const aNums = N.extractNumbers(answer);
+        if (aNums.length >= 2) {
+            const hits = [];
+            for (const opt of options) {
+                const oNums = N.extractNumbers(opt.label);
+                if (oNums.length >= 2 && N.numbersEqual(aNums, oNums)) {
+                    hits.push(opt);
+                }
+            }
+            if (hits.length === 1) {
+                return [hits[0].input];
+            }
+        }
+
         if (aNum !== null) {
             for (const opt of options) {
                 const optNum = N.parseNumeric(opt.label.trim());
                 if (optNum !== null && Math.abs(optNum - aNum) < 1e-6) {
                     return [opt.input];
                 }
-                const numsInLabel = opt.label.match(/-?\d+(?:\.\d+)?(?:\/\d+)?/g);
-                if (numsInLabel) {
-                    for (const numStr of numsInLabel) {
-                        const parsed = N.parseNumeric(numStr);
-                        if (parsed !== null && Math.abs(parsed - aNum) < 1e-6) {
-                            return [opt.input];
-                        }
-                    }
+                const numsInLabel = N.extractNumbers(opt.label);
+                if (numsInLabel.length === 1 && Math.abs(numsInLabel[0] - aNum) < 1e-6) {
+                    return [opt.input];
                 }
             }
         }

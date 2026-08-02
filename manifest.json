@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "NPTEL Assist",
-  "version": "2.3",
+  "version": "2.4",
   "description": "Auto-mark NPTEL assignment answers and copy questions with one click.",
   "permissions": [
     "activeTab",

@@ -88,6 +88,46 @@
     };
 
     /**
+     * Insert a space before an element so adjacent cell/number text does not glue.
+     */
+    function spaceBefore(el) {
+        el.parentNode && el.parentNode.insertBefore(document.createTextNode(' '), el);
+    }
+
+    /**
+     * Prefer MathJax/KaTeX TeX source; space table cells and MathML tokens
+     * so matrix entries stay separable in plain text.
+     */
+    function prepareCloneForText(clone) {
+        clone.querySelectorAll('.MathJax, .katex').forEach(mathEl => {
+            const script = mathEl.querySelector('script[type*="math"]');
+            if (script) {
+                mathEl.replaceWith(document.createTextNode(` ${script.textContent} `));
+            }
+        });
+
+        clone.querySelectorAll('script[type*="math"]').forEach(s => {
+            s.replaceWith(document.createTextNode(` ${s.textContent} `));
+        });
+
+        clone.querySelectorAll('td, th').forEach((cell, i) => {
+            if (i > 0) spaceBefore(cell);
+        });
+
+        clone.querySelectorAll('tr').forEach((row, i) => {
+            if (i > 0) spaceBefore(row);
+        });
+
+        clone.querySelectorAll('mn, mo, mi').forEach((node, i, list) => {
+            if (i === 0) return;
+            const prev = list[i - 1];
+            if (prev && prev.parentNode === node.parentNode) {
+                spaceBefore(node);
+            }
+        });
+    }
+
+    /**
      * Get text from an element, replacing <img> with downloadable filename markers.
      */
     N.extractTextWithImages = function extractTextWithImages(el, excludeChild, opts) {
@@ -113,9 +153,9 @@
             }
             img.replaceWith(document.createTextNode(marker));
         });
-        clone.querySelectorAll('script[type*="math"]').forEach(s => {
-            s.replaceWith(document.createTextNode(s.textContent));
-        });
-        return clone.textContent.trim();
+
+        prepareCloneForText(clone);
+
+        return clone.textContent.replace(/\s+/g, ' ').trim();
     };
 })(globalThis.__nptelAssistNS);
