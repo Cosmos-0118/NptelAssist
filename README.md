@@ -44,8 +44,11 @@ Answer: option two
 
 ## Privacy & Legal
 
-- Privacy Policy: `pages/privacy.html`
-- Terms of Service: `pages/terms.html`
+Hosted on GitHub Pages (also bundled in the extension under `pages/`):
+
+- [Privacy Policy](https://cosmos-0118.github.io/NptelAssist/pages/privacy.html)
+- [Terms of Service](https://cosmos-0118.github.io/NptelAssist/pages/terms.html)
+- [Legal index](https://cosmos-0118.github.io/NptelAssist/pages/)
 
 ## Permissions
 

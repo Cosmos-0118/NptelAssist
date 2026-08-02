@@ -1,0 +1,54 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'pages/**'
+      - 'icons/**'
+      - '.github/workflows/deploy-pages.yml'
+      - '.github/pages-root-index.html'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare site
+        run: |
+          mkdir -p _site/pages _site/icons
+          cp pages/*.html pages/*.css _site/pages/
+          cp icons/icon-48.png _site/icons/
+          cp .github/pages-root-index.html _site/index.html
+          touch _site/.nojekyll
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
